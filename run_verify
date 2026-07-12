@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Build and run the ChaCha20-Poly1305 known-answer test in a container.
+#
+#   ./run_verify amd64   linux/amd64 — on Apple Silicon this runs under Rosetta;
+#                        `ring` should FAIL (mismatches the published vector at 513 B).
+#   ./run_verify arm64   linux/arm64 — native on Apple Silicon; everything should PASS.
+set -euo pipefail
+
+case "${1:-}" in
+  amd64)
+    exec docker compose up --build --abort-on-container-exit
+    ;;
+  arm64)
+    exec docker compose -f docker-compose.arm64.yml up --build --abort-on-container-exit
+    ;;
+  *)
+    echo "usage: $0 {amd64|arm64}" >&2
+    echo "  amd64   run under linux/amd64 (Rosetta on Apple Silicon -> ring should FAIL)" >&2
+    echo "  arm64   run under linux/arm64 (native -> should all PASS)" >&2
+    exit 1
+    ;;
+esac

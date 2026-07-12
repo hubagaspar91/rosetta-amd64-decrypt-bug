@@ -1,0 +1,12 @@
+[package]
+name = "crypto-kat"
+version = "0.1.0"
+edition = "2021"
+
+# Standalone ChaCha20-Poly1305 known-answer test — no Noise crates, no tokio, no
+# hyper, no networking. Compares `ring` (the backend snow/tokio-noise uses via its
+# `ring-accelerated` feature) against RustCrypto and published test vectors.
+[dependencies]
+chacha20poly1305 = "0.10"   # portable-Rust reference implementation
+ring             = "0.17"   # BoringSSL-derived; its x86-64 asm is the suspect
+hex-literal      = "0.4"

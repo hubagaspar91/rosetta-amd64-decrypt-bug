@@ -1,0 +1,21 @@
+# Rust build output
+/target/
+
+# Cargo.lock: keep for binaries (this is a bin crate), so it is NOT ignored.
+# If this were a library you'd typically ignore it.
+
+# Backtraces
+*.rs.bk
+
+# macOS
+.DS_Store
+
+# Editor / IDE
+/.idea/
+/.vscode/
+*.swp
+*~
+
+# Environment overrides
+.env
+.env.local

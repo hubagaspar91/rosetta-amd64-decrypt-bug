@@ -1,0 +1,7 @@
+# arm64 — the control. Runs the KAT natively on Apple Silicon (no translation).
+# Expected: ALL PASS.
+#   Run with:  docker compose -f docker-compose.arm64.yml up --build
+services:
+  kat:
+    build: .
+    platform: linux/arm64

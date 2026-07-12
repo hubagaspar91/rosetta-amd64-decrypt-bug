@@ -1,0 +1,8 @@
+# amd64 — the suspect path. On Apple Silicon with "Use Rosetta for x86_64/amd64
+# emulation" ON, this runs the KAT under Rosetta. If a known-answer test FAILS here
+# while the arm64 control passes, that is crate-independent proof of the bug.
+#   Run with:  docker compose up --build
+services:
+  kat:
+    build: .
+    platform: linux/amd64
